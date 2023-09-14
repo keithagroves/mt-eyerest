@@ -37,16 +37,75 @@ Mt. Eyerest is a macOS status bar application designed to remind you to take bre
     pip3 install -r requirements.txt
     ```
 
-4. Add the launch agent plist for running the app at login (optional):
-    ```bash
-    cp com.eyerest.plist ~/Library/LaunchAgents/
-    ```
-    Modify `com.eyerest.plist` to include the correct path to your Python script.
-
-5. Run the application:
+4. Run the application:
     ```bash
     python3 eyerest.py
     ```
+
+## 5. Add the Launch Agent plist for Running the App at Login (Optional)
+
+### Create the plist File
+
+1. Create a new plist file called `com.eyerest.plist` (or `com.mteyerest.plist` if you decide to go with that name). You can do this using a text editor like `nano` or `vim`, or any other text editor that can save plain text files.
+
+    ```bash
+    nano com.eyerest.plist
+    ```
+   
+2. Paste the following XML content into the editor, making sure to modify the `<string>` value to the path where your Python script (`eyerest.py` or `mt_eyerest.py`) is located.
+
+    ```xml
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+    <plist version="1.0">
+    <dict>
+        <key>Label</key>
+        <string>com.eyerest</string>
+        <key>ProgramArguments</key>
+        <array>
+            <string>/usr/bin/python3</string>
+            <string>/path/to/your/python/script/eyerest.py</string>
+        </array>
+        <key>RunAtLoad</key>
+        <true/>
+    </dict>
+    </plist>
+    ```
+
+    Replace `/path/to/your/python/script/eyerest.py` with the actual path to your script.
+
+3. Save and exit the editor.
+
+### Copy the plist to LaunchAgents
+
+4. Copy the plist file to the `~/Library/LaunchAgents/` directory:
+
+    ```bash
+    cp com.eyerest.plist ~/Library/LaunchAgents/
+    ```
+
+### Load the plist into launchctl
+
+5. Load your plist file into `launchctl` to start the process:
+
+    ```bash
+    launchctl load ~/Library/LaunchAgents/com.eyerest.plist
+    ```
+
+### Verify the Process
+
+6. Verify that the process is running:
+
+    ```bash
+    launchctl list | grep com.eyerest
+    ```
+
+If everything went smoothly, you should see `com.eyerest` listed as a running service. Now, your application should run automatically whenever you log in.
+
+To unload the plist and stop running your script at login, you can use:
+
+```bash
+launchctl unload ~/Library/LaunchAgents/com.eyerest.plist
 
 ## Usage
 
