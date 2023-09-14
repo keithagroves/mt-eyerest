@@ -1,21 +1,24 @@
-from PyQt6.QtWidgets import QApplication, QWidget, QPushButton, QLabel
+import sys
+
 from PyQt6.QtCore import Qt, QTimer, QUrl
 from PyQt6.QtMultimedia import QAudioOutput, QMediaPlayer
+from PyQt6.QtWidgets import QApplication, QLabel, QPushButton, QWidget
 import rumps
-import sys
+
 
 def position_changed(position):
     """Callback function for tracking audio position."""
     print(f"Position changed: {position}")
 
-class AwesomeStatusBarApp(rumps.App):
+
+class MtEyerestStatusBarApp(rumps.App):
     """Main class for the mt. eyerest application."""
     
     def __init__(self):
         """Initialize the application."""
         super().__init__("mt. eyerest", quit_button=None)
         self.menu = ["Preferences", "Quit"]
-        self.timer = rumps.Timer(self.remind_to_close_eyes, 20*60)
+        self.timer = rumps.Timer(self.remind_to_close_eyes, 20 * 60)
         self.timer.start()
         self.first_time = True
         self.app = QApplication.instance() or QApplication(sys.argv)
@@ -96,5 +99,6 @@ class AwesomeStatusBarApp(rumps.App):
         self.app.quit()
         rumps.quit_application()
 
+
 if __name__ == "__main__":
-    AwesomeStatusBarApp().run()
+    MtEyerestStatusBarApp().run()
