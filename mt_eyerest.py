@@ -18,7 +18,7 @@ class MtEyerestStatusBarApp(rumps.App):
         """Initialize the application."""
         super().__init__("mt. eyerest", quit_button=None)
         self.menu = ["Preferences", "Quit"]
-        self.timer = rumps.Timer(self.remind_to_close_eyes, 20 * 60)
+        self.timer = rumps.Timer(self.remind_to_close_eyes, 25)
         self.timer.start()
         self.first_time = True
         self.app = QApplication.instance() or QApplication(sys.argv)
