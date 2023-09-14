@@ -29,7 +29,7 @@ Mt. Eyerest is a macOS status bar application designed to remind you to take bre
 
 2. Navigate to the directory:
     ```bash
-    cd eyerest
+    cd mt-eyerest
     ```
 
 3. Install the required packages:
@@ -39,20 +39,20 @@ Mt. Eyerest is a macOS status bar application designed to remind you to take bre
 
 4. Run the application:
     ```bash
-    python3 eyerest.py
+    python3 mt_eyerest.py
     ```
 
 ## 5. Add the Launch Agent plist for Running the App at Login (Optional)
 
 ### Create the plist File
 
-1. Create a new plist file called `com.eyerest.plist` (or `com.mteyerest.plist` if you decide to go with that name). You can do this using a text editor like `nano` or `vim`, or any other text editor that can save plain text files.
+1. Create a new plist file called `com.com.mt_eyerest.plist.plist`. You can do this using any text editor that can save plain text files.
 
     ```bash
-    nano com.eyerest.plist
+    nano com.mt_eyerest.plist
     ```
    
-2. Paste the following XML content into the editor, making sure to modify the `<string>` value to the path where your Python script (`eyerest.py` or `mt_eyerest.py`) is located.
+2. Paste the following XML content into the editor, making sure to modify the `<string>` value to the path where your Python script mt_eyerest.py` is located.
 
     ```xml
     <?xml version="1.0" encoding="UTF-8"?>
@@ -60,11 +60,11 @@ Mt. Eyerest is a macOS status bar application designed to remind you to take bre
     <plist version="1.0">
     <dict>
         <key>Label</key>
-        <string>com.eyerest</string>
+        <string>com.mt_eyerest</string>
         <key>ProgramArguments</key>
         <array>
             <string>/usr/bin/python3</string>
-            <string>/path/to/your/python/script/eyerest.py</string>
+            <string>/path/to/your/python/script/mt_eyerest.py</string>
         </array>
         <key>RunAtLoad</key>
         <true/>
@@ -72,7 +72,7 @@ Mt. Eyerest is a macOS status bar application designed to remind you to take bre
     </plist>
     ```
 
-    Replace `/path/to/your/python/script/eyerest.py` with the actual path to your script.
+    Replace `/path/to/your/python/script/mt_eyerest.py` with the actual path to your script.
 
 3. Save and exit the editor.
 
@@ -81,7 +81,7 @@ Mt. Eyerest is a macOS status bar application designed to remind you to take bre
 4. Copy the plist file to the `~/Library/LaunchAgents/` directory:
 
     ```bash
-    cp com.eyerest.plist ~/Library/LaunchAgents/
+    cp com.mt_eyerest.plist ~/Library/LaunchAgents/
     ```
 
 ### Load the plist into launchctl
@@ -89,7 +89,7 @@ Mt. Eyerest is a macOS status bar application designed to remind you to take bre
 5. Load your plist file into `launchctl` to start the process:
 
     ```bash
-    launchctl load ~/Library/LaunchAgents/com.eyerest.plist
+    launchctl load ~/Library/LaunchAgents/com.mt_eyerest.plist
     ```
 
 ### Verify the Process
@@ -97,15 +97,15 @@ Mt. Eyerest is a macOS status bar application designed to remind you to take bre
 6. Verify that the process is running:
 
     ```bash
-    launchctl list | grep com.eyerest
+    launchctl list | grep com.mt_eyerest
     ```
 
-If everything went smoothly, you should see `com.eyerest` listed as a running service. Now, your application should run automatically whenever you log in.
+If everything went smoothly, you should see `com.mt_eyerest` listed as a running service. Now, your application should run automatically whenever you log in.
 
 To unload the plist and stop running your script at login, you can use:
 
 ```bash
-launchctl unload ~/Library/LaunchAgents/com.eyerest.plist
+launchctl unload ~/Library/LaunchAgents/com.mt_eyerest.plist
 
 ## Usage
 
