@@ -9,7 +9,7 @@ def position_changed(position):
 
 class AwesomeStatusBarApp(rumps.App):
     def __init__(self):
-        super().__init__("eyerest", quit_button=None)
+        super().__init__("mt. eyerest", quit_button=None)
         self.menu = ["Preferences", "Quit"]
         self.timer = rumps.Timer(self.remind_to_close_eyes, 20*60)
         self.timer.start()

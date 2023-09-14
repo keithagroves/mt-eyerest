@@ -1,8 +1,8 @@
-# Eyerest
+# Mt. Eyerest
 
 ## Overview
 
-Eyerest is a macOS status bar application designed to remind you to take breaks and rest your eyes during extended computer usage. Built using PyQt6 and Rumps, this application provides an overlay screen that darkens your display, encouraging you to close your eyes for a short break. A bell sound will play when it's time to resume work.
+Mt. Eyerest is a macOS status bar application designed to remind you to take breaks and rest your eyes during extended computer usage. Built using PyQt6 and Rumps, this application provides an overlay screen that darkens your display, encouraging you to close your eyes for a short break. A bell sound will play when it's time to resume work.
 
 ## Features
 
