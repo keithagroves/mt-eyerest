@@ -9,10 +9,12 @@ Mt. Eyerest is a macOS status bar application designed to remind you to take bre
 ## Features
 
 - Automatically reminds you to take a break every 20 minutes.
+- **Follows the 20-20-20 Eye Rule**: Encourages eye health by reminding you to rest your eyes by looking at something 20 feet away for at least 20 seconds.
 - Displays a semi-opaque overlay on the screen with instructions.
 - Plays a bell sound to indicate the end of the break period.
 - Skip option for immediately resuming work.
 - Easily accessible from the macOS status bar.
+
 
 ## Installation
 
