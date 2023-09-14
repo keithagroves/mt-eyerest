@@ -5,56 +5,58 @@ import rumps
 import sys
 
 def position_changed(position):
+    """Callback function for tracking audio position."""
     print(f"Position changed: {position}")
 
 class AwesomeStatusBarApp(rumps.App):
+    """Main class for the mt. eyerest application."""
+    
     def __init__(self):
+        """Initialize the application."""
         super().__init__("mt. eyerest", quit_button=None)
         self.menu = ["Preferences", "Quit"]
         self.timer = rumps.Timer(self.remind_to_close_eyes, 20*60)
         self.timer.start()
         self.first_time = True
-        # Initialize QApplication and QMediaPlayer
         self.app = QApplication.instance() or QApplication(sys.argv)
         self.player = QMediaPlayer()
-
         self.audio = QAudioOutput()
-       
         self.audio.setVolume(50)
         self.audio.setMuted(False)
         self.player.setAudioOutput(self.audio)
         self.player.positionChanged.connect(position_changed)
 
     def play_mp3(self, filename):
-        self.player.stop()  # Stop the player first (if needed)
-        self.player.setPosition(0)  # Set the position to 0
-        self.player.play()  # Play it again
+        """Play an MP3 file."""
+        self.player.stop()
+        self.player.setPosition(0)
+        self.player.play()
         self.player.setSource(QUrl.fromLocalFile(filename))
         self.player.play()
 
     def play_ding(self):
-        # rumps.notification("You can now continue working", "Reminder", "Great job resting your eyes!")
+        """Play a bell sound."""
         self.play_mp3("bell.mp3")
 
     def remind_to_close_eyes(self, _):
+        """Remind the user to close their eyes."""
         if self.first_time:
             self.first_time = False
             return
-        # rumps.notification("Take a Break", "Reminder", "Close your eyes for a few seconds.")
         self.create_overlay()
 
     def skip_and_close_overlay(self):
-        self.skip_pressed = True  # Set the flag when the skip button is pressed
+        """Close the overlay when the skip button is pressed."""
+        self.skip_pressed = True
 
     def create_overlay(self):
+        """Create and show an overlay window."""
         overlay = QWidget()
-        self.skip_pressed = False  # Add a flag to track if the skip button was pressed
-
+        self.skip_pressed = False
         screen = self.app.primaryScreen()
         screen_geometry = screen.geometry()
         screen_width = screen_geometry.width()
         screen_height = screen_geometry.height()
-
         overlay.setWindowOpacity(0.6)
         overlay.setWindowFlags(Qt.WindowType.WindowStaysOnTopHint | Qt.WindowType.FramelessWindowHint)
         overlay.setGeometry(0, 0, screen_width, screen_height)
@@ -71,7 +73,7 @@ class AwesomeStatusBarApp(rumps.App):
         text_label.move(label_x, label_y - 50)
 
         close_button = QPushButton("SKIP", overlay)
-        close_button.clicked.connect(self.skip_and_close_overlay)  # Modify this line
+        close_button.clicked.connect(self.skip_and_close_overlay)
         close_button.clicked.connect(overlay.close)
         close_button.resize(200, 100)
         close_button.setStyleSheet("font-size: 24px; background-color: black; color: white;")
@@ -85,10 +87,12 @@ class AwesomeStatusBarApp(rumps.App):
 
     @rumps.clicked("Preferences")
     def prefs(self, _):
+        """Show an alert when Preferences is clicked."""
         rumps.alert("jk! No preferences available!")
 
     @rumps.clicked("Quit")
     def quit_app(self, _):
+        """Quit the application."""
         self.app.quit()
         rumps.quit_application()
 
