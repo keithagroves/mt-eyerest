@@ -46,7 +46,7 @@ Mt. Eyerest is a macOS status bar application designed to remind you to take bre
 
 ### Create the plist File
 
-1. Create a new plist file called `com.com.mt_eyerest.plist.plist`. You can do this using any text editor that can save plain text files.
+1. Create a new plist file called `com.mt_eyerest.plist`. You can do this using any text editor that can save plain text files.
 
     ```bash
     nano com.mt_eyerest.plist
