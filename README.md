@@ -24,7 +24,7 @@ Mt. Eyerest is a macOS status bar application designed to remind you to take bre
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/your-username/eyerest.git
+    git clone https://github.com/keithagroves/mt-eyerest.git
     ```
 
 2. Navigate to the directory:
