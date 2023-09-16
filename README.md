@@ -110,7 +110,7 @@ To unload the plist and stop running your script at login, you can use:
 
 ```bash
 launchctl unload ~/Library/LaunchAgents/com.mt_eyerest.plist
-
+```
 ## Usage
 
 Once the application is running, it will automatically remind you to take a break every 20 minutes. An overlay will appear with a message to close your eyes. You can either wait for the bell sound to resume your work or click the "SKIP" button to immediately close the overlay.
